@@ -18,7 +18,7 @@ call.on('end', () => {
     process.exit(0);
 });
 
-for (let i = 0; i < 5000; i++) {
+for (let i = 0; i < 5_000; i++) {
     const msg = { 
         id: `${i}`,
         sender: 'Client',

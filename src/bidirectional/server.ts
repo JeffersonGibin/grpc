@@ -6,38 +6,36 @@ const server = new grpc.Server();
 
 const serverBidirectional: IServerBidirectionalServer = {
     sendMessage: (call) => {
-
-        const receivedMessages: Message[] = [];
-
         call.on('data', (message: Message) => {
             console.log(message.toObject());
-            receivedMessages.push(message);
         });
 
         call.on('end', () => {
-            for (let i = 0; i < 5000; i++) {
-                const msg = { 
-                    id: `${i}`,
-                    sender: 'Server',
-                    content: `Hello Client (${i})`,
-                    timestamp: new Date().toISOString() 
-                };
-            
-                const message = new Message();
-                message.setId(msg.id);
-                message.setSender(msg.sender);
-                message.setContent(msg.content);
-                message.setTimestamp(msg.timestamp);
-            
-                call.write(message);
-            }
-
-            call.end(); 
+            console.log('finished the stream');
         });
 
         call.on('error', (err) => {
             console.error('Error stream bidirecional:', err);
         });
+
+        for (let i = 0; i < 5_000; i++) {
+            const msg = { 
+                id: `${i}`,
+                sender: 'Server',
+                content: `Hello Client (${i})`,
+                timestamp: new Date().toISOString() 
+            };
+        
+            const message = new Message();
+            message.setId(msg.id);
+            message.setSender(msg.sender);
+            message.setContent(msg.content);
+            message.setTimestamp(msg.timestamp);
+        
+            call.write(message);
+        }
+
+        call.end(); 
     }
 };
 
