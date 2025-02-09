@@ -143,3 +143,4 @@ dist
 
 proto/*.js
 build/
+certs/

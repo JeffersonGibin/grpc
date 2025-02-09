@@ -36,6 +36,13 @@ The project is exclusive to learn more about gRPC and its variations
 | `npm run start:bidirectional:server` | Starts the Bidirectional Streaming gRPC server. |
 | `npm run start:bidirectional:client` | Starts the Bidirectional Streaming gRPC client. |
 
+### Server with fake certificate
+| Command | Description |
+|---------|-------------|
+| `npm run generate:cert` | Generate fake certificate |
+| `npm run start:cert:server` | Starts server with certificate fake. |
+| `npm run start:cert:client` | Starts client with certificate fake. |
+
 ### Utils
 
 ```

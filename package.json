@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "copy:certs": "cp -r ./certs ./build/certs",
     "start:unary:server": "npm run build && node ./build/unary/server.js",
     "start:unary:client": "npm run build && node ./build/unary/client.js",
     "start:server-stream": "npm run build && node ./build/server-stream/server.js",
@@ -12,7 +13,10 @@
     "start:client-stream:server": "npm run build && node ./build/client-stream/server.js",
     "start:client-stream:client": "npm run build && node ./build/client-stream/client.js",
     "start:bidirectional:server": "npm run build && node ./build/bidirectional/server.js",
-    "start:bidirectional:client": "npm run build && node ./build/bidirectional/client.js"
+    "start:bidirectional:client": "npm run build && node ./build/bidirectional/client.js",
+    "start:cert:server": "npm run build  && npm run copy:certs && node ./build/exemple-with-cert/server.js",
+    "start:cert:client": "npm run build && npm run copy:certs && node ./build/exemple-with-cert/client.js",
+    "generate:cert": "bash ./scripts/gen_certs.sh"
   },
   "keywords": [],
   "author": "",
