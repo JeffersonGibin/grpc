@@ -28,8 +28,8 @@ server.addService(StreamService as unknown as grpc.ServiceDefinition<grpc.Untype
 
 server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), (err, port) => {
     if (err) {
-        console.error('Error server gRPC:', err);
+        console.error('[client Stream]: Error server gRPC:', err);
         return;
     }
-    console.log(`Server gRPC working on ${port}`);
+    console.log(`[client Stream]: Server gRPC on running ${port}`);
 });

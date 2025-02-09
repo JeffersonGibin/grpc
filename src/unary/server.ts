@@ -37,10 +37,10 @@ server.addService(
 
 server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), (err, port) => {
     if (err) {
-        console.error('Error server gRPC:', err);
+        console.error('[Unary]: Error server gRPC:', err);
         return;
     }
-    console.log(`Server gRPC working on ${port}`);
+    console.log(`[Unary]: Server gRPC on running ${port}`);
 });
 
 
