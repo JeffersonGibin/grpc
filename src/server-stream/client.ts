@@ -9,18 +9,16 @@ message.setId('1');
 message.setSender('Client');
 message.setContent('Sent me many messages!');
 message.setTimestamp(new Date().toISOString());
-
 const call = client.sendMessage(message);
-let count = 0;
 
 call.on('data', (response) => {
-    console.log('Receive:', response.toObject());
+    console.log(response.toObject());
 });
 
 call.on('error', (err) => {
-    console.error('Erro no servidor:', err);
+    console.error('Error server:', err);
 });
 
 call.on('end', () => {
-    console.log('Stream encerrado pelo servidor!');
+    console.log('Stream finished');
 });

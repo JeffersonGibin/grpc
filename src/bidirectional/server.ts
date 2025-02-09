@@ -1,6 +1,6 @@
 import * as grpc from '@grpc/grpc-js';
 import { ServerBidirectionalService, IServerBidirectionalServer  } from '../../proto/bidirectional_grpc_pb';
-import { Message, Response } from '../../proto/bidirectional_pb';
+import { Message } from '../../proto/bidirectional_pb';
 
 const server = new grpc.Server();
 
@@ -10,25 +10,27 @@ const serverBidirectional: IServerBidirectionalServer = {
         const receivedMessages: Message[] = [];
 
         call.on('data', (message: Message) => {
-            console.log(`Receive from client: ${message.getContent()} of ${message.getSender()}`);
+            console.log(message.toObject());
             receivedMessages.push(message);
         });
 
         call.on('end', () => {
-            const messages = [
-                { id: '1', sender: 'server', content: 'Message 1', timestamp: new Date().toISOString() },
-                { id: '2', sender: 'server', content: 'Message 2', timestamp: new Date().toISOString() },
-                { id: '3', sender: 'server', content: 'Message 3', timestamp: new Date().toISOString() }
-            ];
-
-            messages.forEach(msg => {
-                const response = new Response();
-                response.setStatus(true);
-                response.setMessage(`Server received: ${msg.content}`);
-                response.setDataList([msg.id]);
-                
-                call.write(response);
-            });
+            for (let i = 0; i < 5000; i++) {
+                const msg = { 
+                    id: `${i}`,
+                    sender: 'Server',
+                    content: `Hello Client (${i})`,
+                    timestamp: new Date().toISOString() 
+                };
+            
+                const message = new Message();
+                message.setId(msg.id);
+                message.setSender(msg.sender);
+                message.setContent(msg.content);
+                message.setTimestamp(msg.timestamp);
+            
+                call.write(message);
+            }
 
             call.end(); 
         });

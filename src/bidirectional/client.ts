@@ -6,7 +6,7 @@ const client = new ServerBidirectionalClient('localhost:50051', grpc.credentials
 const call = client.sendMessage();
 
 call.on('data', (response) => {
-    console.log(`Response from server: ${response.getMessage()}`);
+    console.log(response.toObject());
 });
 
 call.on('error', (err) => {
@@ -18,13 +18,14 @@ call.on('end', () => {
     process.exit(0);
 });
 
-const messages = [
-    { id: '1', sender: 'Client', content: 'Message 1', timestamp: new Date().toISOString() },
-    { id: '2', sender: 'Client', content: 'Message 2', timestamp: new Date().toISOString() },
-    { id: '3', sender: 'Client', content: 'Message 3', timestamp: new Date().toISOString() }
-];
+for (let i = 0; i < 5000; i++) {
+    const msg = { 
+        id: `${i}`,
+        sender: 'Client',
+        content: `Hello Server (${i})`,
+        timestamp: new Date().toISOString() 
+    };
 
-messages.forEach(msg => {
     const message = new Message();
     message.setId(msg.id);
     message.setSender(msg.sender);
@@ -32,6 +33,6 @@ messages.forEach(msg => {
     message.setTimestamp(msg.timestamp);
 
     call.write(message);
-});
+}
 
 call.end();

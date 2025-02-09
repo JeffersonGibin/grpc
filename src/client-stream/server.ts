@@ -1,23 +1,25 @@
 import * as grpc from '@grpc/grpc-js';
 import {IStreamServer, StreamService } from '../../proto/client-stream_grpc_pb';
-import { Message, Response } from '../../proto/client-stream_pb';
+import { Message } from '../../proto/client-stream_pb';
 
 const server = new grpc.Server();
 const streamService: IStreamServer = {
-    sendMessage: function (call: grpc.ServerReadableStream<Message, Response>, callback: grpc.sendUnaryData<Response>): void {
-        let response = new Response();
+    sendMessage: function (call: grpc.ServerReadableStream<Message, Message>, callback: grpc.sendUnaryData<Message>): void {
+        const messageResponse = new Message();
         let count = 0;
 
         call.on('data', (message) => {
-            console.log('Received:', message.getContent());
+            console.log(message.toObject());
             count++;
         });
 
         call.on('end', () => {
-            response.setMessage(`The server receive ${count} messages!`);
-            response.setStatus(true);
-            
-            callback(null, response);
+            messageResponse.setId('0');
+            messageResponse.setContent(`The server receive ${count} messages!`);
+            messageResponse.setTimestamp(new Date().toISOString());
+            messageResponse.setSender('Server');
+
+            callback(null, messageResponse);
         });
     }
 };

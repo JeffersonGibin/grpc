@@ -1,30 +1,33 @@
 
 import * as grpc from '@grpc/grpc-js';
 import { ServerStreamService, IServerStreamServer } from '../../proto/server-stream_grpc_pb';
-import { Message, Response } from '../../proto/server-stream_pb';
+import { Message } from '../../proto/server-stream_pb';
 
 const server = new grpc.Server();
 
 const serverStream: IServerStreamServer = {
-    sendMessage: function (call: grpc.ServerWritableStream<Message, Response>): void {
+    sendMessage: function (call: grpc.ServerWritableStream<Message, Message>): void {
         const objectMessage = call.request;
-        const response = new Response();
 
-        console.log("Payload Client", objectMessage.toObject());
+        console.log(objectMessage.toObject());
+
+        const messageResponse = new Message();
+        messageResponse.setTimestamp(new Date().toISOString());
+        messageResponse.setSender("Server");
 
         if (!objectMessage.getContent()) {
-            const response = new Response();
-            response.setMessage("Message empty");
-            response.setStatus(false);
-            call.write(response);
+            messageResponse.setId("0");
+            messageResponse.setContent("Message empty");
+
+            call.write(messageResponse);
             call.end();
             return;
         }
 
         for (let i = 0; i < 5000; i++) {
-            response.setMessage(`Message ${i}`);
-            response.setStatus(true);
-            call.write(response);
+            messageResponse.setId(`${i}`);
+            messageResponse.setContent(`Hello Server (${i})`);
+            call.write(messageResponse);
         }
 
         call.end(); 
