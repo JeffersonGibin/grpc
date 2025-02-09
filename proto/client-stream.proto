@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package stream;
+
+service Stream {
+  rpc SendMessage (stream Message) returns (Response);
+}
+
+message Message {
+  string id = 1;
+  string sender = 2;
+  string content = 3;
+  string timestamp = 4;
+}
+
+message Response {
+  bool status = 1;
+  string message = 2;
+}

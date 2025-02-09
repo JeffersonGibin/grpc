@@ -1,0 +1,29 @@
+{
+  "name": "grpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:unary:server": "npm run build && node ./build/unary/server.js",
+    "start:unary:client": "npm run build && node ./build/unary/client.js",
+    "start:server-stream": "npm run build && node ./build/server-stream/server.js",
+    "start:client-server-stream": "npm run build && node ./build/server-stream/client.js",
+    "start:client-stream:server": "npm run build && node ./build/client-stream/server.js",
+    "start:client-stream:client": "npm run build && node ./build/client-stream/client.js",
+    "start:bidirectional:server": "npm run build && node ./build/bidirectional/server.js",
+    "start:bidirectional:client": "npm run build && node ./build/bidirectional/client.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.6",
+    "@grpc/proto-loader": "^0.7.13",
+    "google-protobuf": "^3.21.4",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "protoc-gen-js": "^3.21.4-4"
+  }
+}
