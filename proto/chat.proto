@@ -3,7 +3,7 @@ syntax = "proto3";
 package chat;
 
 service Chat {
-  rpc SendMessage(Message) returns (Response);
+  rpc SendMessage(Message) returns (Message);
 }
 
 message Message {
@@ -11,9 +11,4 @@ message Message {
   string sender = 2;
   string content = 3;
   string timestamp = 4;
-}
-
-message Response {
-  bool status = 1;
-  string message = 2;
 }

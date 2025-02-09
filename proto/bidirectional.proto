@@ -3,7 +3,7 @@ syntax = "proto3";
 package bidirectional;
 
 service ServerBidirectional {
-  rpc SendMessage (stream Message) returns (stream Response);
+  rpc SendMessage (stream Message) returns (stream Message);
 }
 
 message Message {
@@ -11,10 +11,4 @@ message Message {
   string sender = 2;
   string content = 3;
   string timestamp = 4;
-}
-
-message Response {
-  bool status = 1;
-  string message = 2;
-  repeated string data = 3;
 }

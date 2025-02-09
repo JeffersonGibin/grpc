@@ -14,7 +14,7 @@ client.sendMessage(message, (err, response) => {
     if(err) {
         console.error('Error from server:', err);
     } else {
-        console.log('Response from server:', response.getMessage());
+        console.log(response.toObject());
         process.exit(0);
     }
 });

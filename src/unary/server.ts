@@ -2,26 +2,31 @@
 
 import * as grpc from '@grpc/grpc-js';
 import { ChatService, IChatServer } from '../../proto/chat_grpc_pb';
-import { Message, Response } from '../../proto/chat_pb';
+import { Message } from '../../proto/chat_pb';
 
 const server = new grpc.Server();
 
 const chatService: IChatServer = {
-    sendMessage: function (call: grpc.ServerUnaryCall<Message, Response>, callback: grpc.sendUnaryData<Response>): void {
+    sendMessage: function (call: grpc.ServerUnaryCall<Message, Message>, callback: grpc.sendUnaryData<Message>): void {
         const objectMessage = call.request;
-        const response = new Response();
+
+        console.log(objectMessage.toObject());
+        
+        const messageResponse = new Message();
+        messageResponse.setTimestamp(new Date().toISOString());
+        messageResponse.setSender("Server");
 
         if (!objectMessage.getContent()) {
-            response.setMessage("Message empty");
-            response.setStatus(false);
+            messageResponse.setId("0");
+            messageResponse.setContent("Message empty");
             
-            callback(null, response);
+            callback(null, messageResponse);
             return;
         }
         
-        response.setMessage(`[Server] Receive your message!`);
-        response.setStatus(true);
-        callback(null, response);
+        messageResponse.setId("1");
+        messageResponse.setContent(`Hello Client!`);
+        callback(null, messageResponse);
     }
 };
 
