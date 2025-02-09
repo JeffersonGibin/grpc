@@ -1,6 +1,6 @@
 # gRPC
 
-The project is exclusive to learn more about gRPC and its variations
+The project is exclusive to learn more about gRPC and your variations
 
 ### gRPC Variations
 
