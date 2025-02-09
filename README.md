@@ -1,6 +1,6 @@
 # gRPC
 
-The project is PoC for learn more about gRPC.
+The project is exclusive to learn more about gRPC and its variations
 
 ### gRPC Variations
 
