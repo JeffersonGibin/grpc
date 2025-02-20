@@ -27,7 +27,7 @@ The project is exclusive to learn more about gRPC and your variations
 | `npm run start:server-stream` | Starts the Server Streaming gRPC server. |
 | `npm run start:client-server-stream` | Starts the Server Streaming gRPC client. |
 
-![image](https://github.com/user-attachments/assets/de2e87b9-df5e-43c3-b958-ea5459f0d370)
+![image](https://github.com/user-attachments/assets/38141df1-910c-4844-b0dc-cc6e342cce1f)
 
 
 ### Client Streaming Commands
@@ -36,7 +36,7 @@ The project is exclusive to learn more about gRPC and your variations
 | `npm run start:client-stream:server` | Starts the Client Streaming gRPC server. |
 | `npm run start:client-stream:client` | Starts the Client Streaming gRPC client. |
 
-![image](https://github.com/user-attachments/assets/918b5bdb-5696-4cc0-ae98-17649f1fbc12)
+![image](https://github.com/user-attachments/assets/9dd9c36d-3bb8-4a32-986d-85bf0c2c8118)
 
 
 ### Bidirectional Streaming Commands
@@ -45,7 +45,7 @@ The project is exclusive to learn more about gRPC and your variations
 | `npm run start:bidirectional:server` | Starts the Bidirectional Streaming gRPC server. |
 | `npm run start:bidirectional:client` | Starts the Bidirectional Streaming gRPC client. |
 
-![image](https://github.com/user-attachments/assets/c94cb9b4-ee16-4dd5-971a-cf3e54aeb4e0)
+![image](https://github.com/user-attachments/assets/3d31e43e-d145-4b05-baef-d0fec3e9dbf8)
 
 ### Server with fake certificate
 | Command | Description |
