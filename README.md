@@ -18,11 +18,17 @@ The project is exclusive to learn more about gRPC and your variations
 | `npm run start:unary:server` | Starts the Unary RPC server. |
 | `npm run start:unary:client` | Starts the Unary RPC client. |
 
+![image](https://github.com/user-attachments/assets/4540c438-c1c9-467f-bc0a-fdda1328772b)
+
+
 ### Server Streaming Commands
 | Command | Description |
 |---------|-------------|
 | `npm run start:server-stream` | Starts the Server Streaming gRPC server. |
 | `npm run start:client-server-stream` | Starts the Server Streaming gRPC client. |
+
+![image](https://github.com/user-attachments/assets/de2e87b9-df5e-43c3-b958-ea5459f0d370)
+
 
 ### Client Streaming Commands
 | Command | Description |
@@ -30,11 +36,16 @@ The project is exclusive to learn more about gRPC and your variations
 | `npm run start:client-stream:server` | Starts the Client Streaming gRPC server. |
 | `npm run start:client-stream:client` | Starts the Client Streaming gRPC client. |
 
+![image](https://github.com/user-attachments/assets/918b5bdb-5696-4cc0-ae98-17649f1fbc12)
+
+
 ### Bidirectional Streaming Commands
 | Command | Description |
 |---------|-------------|
 | `npm run start:bidirectional:server` | Starts the Bidirectional Streaming gRPC server. |
 | `npm run start:bidirectional:client` | Starts the Bidirectional Streaming gRPC client. |
+
+![image](https://github.com/user-attachments/assets/c94cb9b4-ee16-4dd5-971a-cf3e54aeb4e0)
 
 ### Server with fake certificate
 | Command | Description |
